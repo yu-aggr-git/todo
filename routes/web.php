@@ -19,6 +19,8 @@ use App\Http\Controllers\HomeController;
 // Route::get('/', function () {return view('welcome');});
 
 Route::group(['middleware' => 'can:view,folder'], function() {
+  Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
   Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'])->name('tasks.index');
 
   Route::get('/folders/create', [FolderController::class, 'showCreateForm'])->name('folders.create');
@@ -39,5 +41,3 @@ Route::group(['middleware' => 'can:view,folder'], function() {
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
