@@ -21,8 +21,6 @@ use App\Http\Controllers\HomeController;
 Route::group(['middleware' => 'auth'], function() {
   Route::get('/', [HomeController::class,"index"])->name('home');
 
-  Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'])->name('tasks.index');
-
   Route::get('/folders/create', [FolderController::class, 'showCreateForm'])->name('folders.create');
 
   Route::post('/folders/create', [FolderController::class, 'create']);
@@ -36,7 +34,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::post('/folders/{folder}/tasks/{task}/edit', [TaskController::class, 'edit']);
 
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'])->name('tasks.index');
   });
 });
 
